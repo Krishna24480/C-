@@ -1,35 +1,33 @@
 #include <iostream>
 using namespace std;
 
-int findPivot(int arr[], int n)
+int GetPivot(int arr[], int n)
 {
-    int start = 0;
-    int end = n - 1;
+    int s = 0;
+    int e = n - 1;
+    int mid = s + (e - s) / 2;
 
-    while (start < end)
+    while (s<e)
     {
-        int mid = start + (end - start) / 2;
-
-        if (arr[mid] > arr[end])
+        if (arr[mid] >= arr[0])
         {
-            start = mid + 1;
+            s = mid + 1;
         }
-        else
-        {
-            end = mid;
+        else{
+            e = mid;
         }
+        mid = s + (e - s) / 2;
     }
-
-    return start;
+    return s;
 }
 
 int main()
 {
-    int arr[] = {4, 5, 6, 7, 1, 2, 3};
-    int n = 7;
+    int arr[5] = {8, 10, 17, 1, 3};
+    int n = 5;
 
-    cout << "Pivot Index: " << findPivot(arr, n) << endl;
-    cout << "Pivot Element: " << arr[findPivot(arr, n)] << endl;
+    int Pivot = GetPivot(arr, n);
 
+    cout << "Pivot is at index: " << Pivot << endl;
     return 0;
 }

@@ -1,38 +1,46 @@
 #include <iostream>
 using namespace std;
 
-void swapAlternate(int arr[], int size)
-{
-    for (int i = 0; i < size; i += 2)
-    {
-        if (i + 1 < size)
-        {
-            swap(arr[i], arr[i + 1]);
-        }
-    }
-}
+void PrintArr(int arr[], int size){
 
-void printArray(const int arr[], int size)
-{
     for (int i = 0; i < size; i++)
     {
         cout << arr[i] << " ";
     }
-    cout << endl;
+    cout << "\n";
+}
+
+void SwapAlternate(int arr[], int size){
+
+    for (int i = 0; i < size; i+=2)
+    {
+        if (i + 1 < size)
+        {
+            swap(arr[i], arr[i + 1]);
+        }       
+    }  
 }
 
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    int even[8] = {5, 2, 9, 4, 7, 6, 1, 0};
+    int odd[5] = {11,33,9,76,43};
 
-    cout << "Original Array: ";
-    printArray(arr, size);
+    cout << "Before Swap: " << endl;
+    PrintArr(even, 8);
 
-    swapAlternate(arr, size);
+    cout << "After Swap: " << endl;
+    SwapAlternate(even, 8);
+    PrintArr(even, 8);
 
-    cout << "Swapped Array:  ";
-    printArray(arr, size);
+    cout << endl;
 
+    cout << "Before Swap: " << endl;
+    PrintArr(odd, 5);
+
+    cout << "After Swap: " << endl;
+    SwapAlternate(odd, 5);
+    PrintArr(odd, 5);
+    
     return 0;
 }

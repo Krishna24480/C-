@@ -1,24 +1,23 @@
 #include <iostream>
 using namespace std;
 
-int findUnique(int arr[], int n)
-{
-    int unique = 0;
+int FindUnique(int arr[],int size){
 
-    for (int i = 0; i < n; i++)
+    int ans = 0;
+    for (int i = 0; i < size; i++)
     {
-        unique ^= arr[i];
+        ans = ans ^ arr[i];
     }
-
-    return unique;
+    return ans;
 }
 
 int main()
 {
-    int arr[] = {2, 3, 5, 3, 2};
-    int n = 5;
+    int arr[7] = {2,3,1,1,3,6,2};
 
-    cout << findUnique(arr, n);
+    int ans = FindUnique(arr, 7);
+
+    cout << "The Unique No. In an Array is: " << ans << "\n";
 
     return 0;
 }

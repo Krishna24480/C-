@@ -1,39 +1,50 @@
 #include <iostream>
 using namespace std;
 
-int squareRoot(int n)
+int findRootIndex(int arr[], int size, int n)
 {
-    int start = 0;
-    int end = n;
-    int ans = 0;
+    int low = 0;
+    int high = size - 1;
 
-    while (start <= end)
+    while (low <= high)
     {
-        int mid = start + (end - start) / 2;
+        int mid = low + (high - low) / 2;
 
-        if (mid * mid == n)
+        // arr[mid] is the possible root
+        long long square = 1LL * arr[mid] * arr[mid];
+
+        if (square == n)
         {
-            return mid;
+            return mid; // Root found
         }
-        else if (mid * mid < n)
+        else if (square < n)
         {
-            ans = mid;
-            start = mid + 1;
+            low = mid + 1;
         }
         else
         {
-            end = mid - 1;
+            high = mid - 1;
         }
     }
 
-    return ans;
+    return -1; // Root not found
 }
 
 int main()
 {
-    int n = 36;
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-    cout << "Square Root: " << squareRoot(n);
+    int n;
+    cout << "Enter number: ";
+    cin >> n;
+
+    int index = findRootIndex(arr, size, n);
+
+    if (index != -1)
+        cout << "Root exists at index: " << index << endl;
+    else
+        cout << "Root does not exist in the array." << endl;
 
     return 0;
 }

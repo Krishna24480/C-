@@ -1,49 +1,34 @@
 #include <iostream>
 using namespace std;
 
-int searchRotated(int arr[], int n, int target)
+int search(int arr[], int n, int key)
 {
-    int start = 0;
-    int end = n - 1;
+    int S = 0;
+    int E = n - 1;
 
-    while (start <= end)
+    while (S <= E)
     {
-        int mid = start + (end - start) / 2;
+        int mid = S + (E - S) / 2;
 
-        // Target found
-        if (arr[mid] == target)
-        {
+        if (arr[mid] == key)
             return mid;
-        }
 
         // Left half is sorted
-        if (arr[start] <= arr[mid])
+        if (arr[S] <= arr[mid])
         {
-
-            // Target lies in left sorted half
-            if (arr[start] <= target && target < arr[mid])
-            {
-                end = mid - 1;
-            }
+            if (arr[S] <= key && key < arr[mid])
+                E = mid - 1;
             else
-            {
-                start = mid + 1;
-            }
+                S = mid + 1;
         }
 
         // Right half is sorted
         else
         {
-
-            // Target lies in right sorted half
-            if (arr[mid] < target && target <= arr[end])
-            {
-                start = mid + 1;
-            }
+            if (arr[mid] < key && key <= arr[E])
+                S = mid + 1;
             else
-            {
-                end = mid - 1;
-            }
+                E = mid - 1;
         }
     }
 
@@ -54,9 +39,15 @@ int main()
 {
     int arr[] = {4, 5, 6, 7, 0, 1, 2};
     int n = 7;
-    int target = 0;
 
-    cout << "Index: " << searchRotated(arr, n, target);
+    int key = 0;
+
+    int position = search(arr, n, key);
+
+    if (position != -1)
+        cout << "Key found at index: " << position << endl;
+    else
+        cout << "Key not found" << endl;
 
     return 0;
 }
