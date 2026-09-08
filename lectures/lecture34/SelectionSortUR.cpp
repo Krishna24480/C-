@@ -14,11 +14,22 @@ int printArr(int arr[], int n)
     cout << endl;
 }
 
-void SelectionSort(int arr[], int n)
+void SelectionSort(int arr[], int n, int index = 0)
 {
+    if (index >= n - 1)
+        return;
 
-    
+    int minIndex = index;
 
+    for (int i = index + 1; i < n; i++)
+    {
+        if (arr[i] < arr[minIndex])
+            minIndex = i;
+    }
+
+    swap(arr[index], arr[minIndex]);
+
+    SelectionSort(arr, n, index + 1);
 }
 
 int main()
