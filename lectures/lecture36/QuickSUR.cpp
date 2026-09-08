@@ -1,3 +1,7 @@
+// Quick Sort  Using Recursion
+
+// Recursion-Day 6
+
 #include <iostream>
 using namespace std;
 
@@ -60,19 +64,28 @@ void quickSort(int arr[], int s, int e)
     quickSort(arr, p + 1, e);
 }
 
-int main()
+int printArr(int arr[], int n)
 {
-
-    int arr[10] = {2, 4, 1, 6, 9, 9, 9, 9, 9, 9};
-    int n = 10;
-
-    quickSort(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n - 1; i++)
     {
         cout << arr[i] << " ";
     }
     cout << endl;
+}
 
+int main()
+{
+
+    int arr[] = {8, 4, 5, 3, 5, 4, 2, 43};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int s = 0;
+    int e = n - 1;
+
+    cout << "Array Before Sorted:" << endl;
+    printArr(arr, n);
+
+    quickSort(arr, s, e);
+    cout << "Array After Sorted:" << endl;
+    printArr(arr, n);
     return 0;
 }
