@@ -36,10 +36,11 @@ int main()
 
     string s;
 
+    int index = 0;
     cout << "Enter a string: ";
     cin >> s;
 
-    permutation(s, 0);
+    permutation(s, index);
 
     return 0;
 }
