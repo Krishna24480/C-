@@ -17,6 +17,20 @@ public:
     }
 };
 
+int getLength(Node *head)
+{
+    Node *temp = head;
+    int len = 0;
+
+    while (temp != NULL)
+    {
+        len++;
+        temp = temp->next;
+    }
+
+    return len;
+}
+
 void print(Node* head){
     Node *temp = head;
 
@@ -35,6 +49,10 @@ int main()
     Node *head = node1;
 
     print(head);
+
+    int Length = getLength(head);
+
+    cout << "Length Of DLL is: " << Length << endl;
 
     return 0;
 }
