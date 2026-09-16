@@ -26,6 +26,11 @@ public:
     }
 };
 
+void deleteNode(Node *&tail, int element, int d)
+{
+   
+}
+
 void insertNode(Node *&tail, int element, int d)
 {
     if (tail == NULL)
