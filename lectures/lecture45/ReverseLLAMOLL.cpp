@@ -144,6 +144,18 @@ Node* FindMiddle(Node* head){
     return Slow;
 }
 
+int GetLength(Node* head){
+
+    int len = 0;
+
+    while (head != NULL)
+    {
+        len++;
+        head = head->next;
+    }
+    return len;
+}
+
 void Print(Node *&head)
 {
     Node *temp = head;
@@ -221,6 +233,11 @@ int main()
     Node *Middle = FindMiddle(head);
 
     cout << "The Middle Node In a Link List is: " << Middle->data << endl;
+
+    cout << endl;
+
+    int LengthLL = GetLength(head);
+    cout << "The Length of LL is: " << LengthLL << endl;
 
     return 0;
 }
