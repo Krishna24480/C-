@@ -1,3 +1,6 @@
+// Reverse a Link List using Loop and Recurison 
+//  Find Middle of Link List
+
 #include <iostream>
 using namespace std;
 
@@ -127,6 +130,20 @@ Node *ReverseLLUR(Node *&head)
     return newHead;
 }
 
+Node* FindMiddle(Node* head){
+
+    Node *Slow = head;
+    Node *Fast = head;
+
+    while (Fast!= NULL && Fast->next != NULL )
+    {
+        Slow = Slow->next;
+        Fast = Fast->next->next;
+    }
+
+    return Slow;
+}
+
 void Print(Node *&head)
 {
     Node *temp = head;
@@ -200,6 +217,10 @@ int main()
     cout << "Reverse List: " << endl;
     head = ReverseLLUR(head);
     Print(head);
+
+    Node *Middle = FindMiddle(head);
+
+    cout << "The Middle Node In a Link List is: " << Middle->data << endl;
 
     return 0;
 }
