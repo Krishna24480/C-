@@ -80,7 +80,7 @@ bool detectLoop(Node *head)
     {
         return false;
     }
-    
+
     while (slow != NULL && fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
@@ -95,12 +95,11 @@ bool detectLoop(Node *head)
     return false;
 }
 
-// Detect and Remove Loop
-void removeLoop(Node *head)
+int BigningOfLoop(Node *head)
 {
     if (head == NULL)
     {
-        return;
+        return 0;
     }
 
     Node *slow = head;
@@ -121,7 +120,7 @@ void removeLoop(Node *head)
     // No loop
     if (slow != fast)
     {
-        return;
+        return 0;
     }
 
     // Step 2: Find starting point of loop
@@ -133,73 +132,117 @@ void removeLoop(Node *head)
         fast = fast->next;
     }
 
-    // Step 3: Find last node of loop
-    Node *temp = fast;
-
-    while (temp->next != slow)
-    {
-        temp = temp->next;
-    }
-
-    // Remove loop
-    temp->next = NULL;
+    return slow->data;
 }
-
-// Print Linked List
-void print(Node *head)
-{
-    Node *temp = head;
-
-    while (temp != NULL)
+    // Detect and Remove Loop
+    void removeLoop(Node * head)
     {
-        cout << temp->data << " -> ";
-        temp = temp->next;
+        if (head == NULL)
+        {
+            return ;
+        }
+
+        Node *slow = head;
+        Node *fast = head;
+
+        // Step 1: Detect loop
+        while (slow != NULL && fast != NULL && fast->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast)
+            {
+                break;
+            }
+        }
+
+        // No loop
+        if (slow != fast)
+        {
+            return;
+        }
+
+        // Step 2: Find starting point of loop
+        slow = head;
+
+        while (slow != fast)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+
+        // Step 3: Find last node of loop
+        Node *temp = fast;
+
+        while (temp->next != slow)
+        {
+            temp = temp->next;
+        }
+
+        // Remove loop
+        temp->next = NULL;
     }
 
-    cout << "NULL" << endl;
-}
-
-// Main Function
-int main()
-{
-    Node *head = NULL;
-
-    insertAtTail(head, 10);
-    insertAtTail(head, 20);
-    insertAtTail(head, 30);
-    insertAtTail(head, 40);
-    insertAtTail(head, 50);
-
-    // Create loop:
-    // 50 -> 30
-    createLoop(head, 3);
-
-    // Check loop
-    if (detectLoop(head))
+    // Print Linked List
+    void print(Node * head)
     {
-        cout << "Loop is present" << endl;
-    }
-    else
-    {
-        cout << "Loop is not present" << endl;
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+
+        cout << "NULL" << endl;
     }
 
-    // Remove loop
-    removeLoop(head);
-
-    // Check again
-    if (detectLoop(head))
+    // Main Function
+    int main()
     {
-        cout << "Loop is present" << endl;
-    }
-    else
-    {
-        cout << "Loop is removed" << endl;
-    }
+        Node *head = NULL;
 
-    // Print after removing loop
-    cout << "Linked List:" << endl;
-    print(head);
+        insertAtTail(head, 10);
+        insertAtTail(head, 20);
+        insertAtTail(head, 30);
+        insertAtTail(head, 40);
+        insertAtTail(head, 50);
 
-    return 0;
-}
+        // Create loop:
+        // 50 -> 30
+        createLoop(head, 3);
+
+        // Check loop
+        if (detectLoop(head))
+        {
+            cout << "Loop is present" << endl;
+        }
+        else
+        {
+            cout << "Loop is not present" << endl;
+        }
+
+      int Bigning = BigningOfLoop(head);
+
+      cout << "Bigning Of Loop Is: " << Bigning << endl;
+
+      // Remove loop
+      removeLoop(head);
+
+      // Check again
+      if (detectLoop(head))
+      {
+          cout << "Loop is present" << endl;
+      }
+        else
+        {
+            cout << "Loop is removed" << endl;
+        }
+
+        // Print after removing loop
+        cout << "Linked List:" << endl;
+        print(head);
+
+        return 0;
+    }
