@@ -83,3 +83,43 @@ public:
         return mini;
     }
 };
+
+int main()
+{
+
+    SpecialStack s;
+
+    cout << "PUSH the Element From the Stack" << endl;
+    s.push(77);
+
+    cout << "Stack Top Element is: " << s.top() << endl;
+
+    cout << "POP the Element From the Stack" << endl;
+
+    s.pop();
+
+    if (s.isEmpty())
+    {
+        cout << "Stack is Empty\n";
+    }
+    else
+    {
+        cout << "Stack is not Empty\n";
+    }
+
+    cout << "PUSH the Element From the Stack" << endl;
+    s.push(177);
+
+    cout << "Stack Top Element is: " << s.top() << endl;
+
+    if (s.isEmpty())
+    {
+        cout << "Stack is Empty\n";
+    }
+    else
+    {
+        cout << "Stack is not Empty\n";
+    }
+
+    return 0;
+}
