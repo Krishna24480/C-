@@ -104,21 +104,48 @@ int heightOBT(node *root)
     return ans;
 }
 
-int DiameterOBT(node *root){
-
+pair<int, int> DiameterFast(node *root)
+{
     if (root == NULL)
     {
-        return 0;
+        pair<int, int> p = make_pair(0, 0);
+        return p;
     }
 
-    int Op1 = DiameterOBT(root->left);
-    int Op2 = DiameterOBT(root->right);
-    int Op3 = heightOBT(root->left) + heightOBT(root->right) + 1;
+    pair<int, int> left = DiameterFast(root->left);
+    pair<int, int> right = DiameterFast(root->right);
 
-    int ans = max(Op1, max(Op2, Op3));
+    int Op1 = left.first;
+    int Op2 = right.first;
+    int Op3 = left.second + right.second + 1;
+
+    pair<int, int> ans;
+    ans.first = max(Op1, max(Op2, Op3));
+    ans.second = max(left.second, right.second) + 1;
 
     return ans;
 }
+
+int DiameterOBT(node *root)   // O(n);
+{
+   return DiameterFast(root).first;
+}
+
+// int DiameterOBT(node *root){   //O(n(Square));
+
+//     if (root == NULL)
+//     {
+//         return 0;
+//     }
+
+//     int Op1 = DiameterOBT(root->left);
+//     int Op2 = DiameterOBT(root->right);
+//     int Op3 = heightOBT(root->left) + heightOBT(root->right) + 1;
+
+//     int ans = max(Op1, max(Op2, Op3));
+
+//     return ans;
+// }
 
 int main()
 {
