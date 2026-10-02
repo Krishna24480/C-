@@ -90,6 +90,36 @@ void levelOrderTraversal(node *root)
     }
 }
 
+int heightOBT(node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int left = heightOBT(root->left);
+    int right = heightOBT(root->right);
+
+    int ans = max(left, right) + 1;
+    return ans;
+}
+
+int DiameterOBT(node *root){
+
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int Op1 = DiameterOBT(root->left);
+    int Op2 = DiameterOBT(root->right);
+    int Op3 = heightOBT(root->left) + heightOBT(root->right) + 1;
+
+    int ans = max(Op1, max(Op2, Op3));
+
+    return ans;
+}
+
 int main()
 {
     node *root = NULL;
@@ -98,7 +128,9 @@ int main()
 
     levelOrderTraversal(root);
 
-   
+    int Diameter = DiameterOBT(root);
+
+    cout << "Diameter Of Binary Tree is: " << Diameter << endl;
 
     return 0;
 }
