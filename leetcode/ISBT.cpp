@@ -104,7 +104,8 @@ int heightOBT(node *root)
     return ans;
 }
 
-bool isBalance(node *root){
+bool isBalance(node *root)
+{
 
     if (root == NULL)
     {
@@ -116,7 +117,8 @@ bool isBalance(node *root){
 
     bool diff = abs(heightOBT(root->left) - heightOBT(root->right)) <= 1;
 
-    if(left && right && diff ){
+    if (left && right && diff)
+    {
         return true;
     }
     else
@@ -156,8 +158,51 @@ pair<bool, int> isBalanceFast(node *root)
     return ans;
 }
 
-bool isBalance2(node *root){
+bool isBalance2(node *root)
+{
     return isBalanceFast(root).first;
+}
+
+pair<bool, int> isSumTreeFast(node *root)
+{
+    if (root == NULL)
+    {
+        pair<bool, int> p = make_pair(true, 0);
+        return p;
+    }
+    
+    if (root->left == NULL && root->right == NULL)
+    {
+        pair<bool, int> p = make_pair(true, root->data);
+        return p;
+    }
+
+    pair<bool, int> leftAns = isSumTreeFast(root->left);
+    pair<bool, int> rightAns = isSumTreeFast(root->right);
+
+    bool left = leftAns.first;
+    bool right = rightAns.first;
+
+    bool Cond = root->data == leftAns.second + rightAns.second;
+
+    pair<bool, int> ans;
+
+    if (left && right && Cond)
+    {
+        ans.first = true;
+        ans.second = 2 * root->data;
+    }
+    else
+    {
+        ans.first = false;
+    }
+
+    return ans;
+}
+
+bool isSumTree(node *root)
+{
+    return isSumTreeFast(root).first;
 }
 
 int main()
@@ -168,13 +213,13 @@ int main()
 
     levelOrderTraversal(root);
 
-    if (isBalance2(root) == true)
+    if (isSumTree(root) == true)
     {
-        cout << "Binary Tree is Balance" << endl;
+        cout << "ISSum Tree\n";
     }
     else
     {
-        cout << "Binary Tree is Not Balance" << endl;
+        cout << " Not ISSum Tree\n";
     }
 
     return 0;

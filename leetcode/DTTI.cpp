@@ -90,91 +90,65 @@ void levelOrderTraversal(node *root)
     }
 }
 
-int heightOBT(node *root)
-{
-    if (root == NULL)
-    {
-        return 0;
-    }
+bool isIdentical(node *root1,node *root2){
 
-    int left = heightOBT(root->left);
-    int right = heightOBT(root->right);
-
-    int ans = max(left, right) + 1;
-    return ans;
-}
-
-bool isBalance(node *root){
-
-    if (root == NULL)
+    if (root1 == NULL && root2 == NULL)
     {
         return true;
     }
 
-    bool left = isBalance(root->left);
-    bool right = isBalance(root->right);
-
-    bool diff = abs(heightOBT(root->left) - heightOBT(root->right)) <= 1;
-
-    if(left && right && diff ){
-        return true;
-    }
-    else
+    if (root1 == NULL && root2 != NULL)
     {
         return false;
     }
-}
 
-pair<bool, int> isBalanceFast(node *root)
-{
-    if (root == NULL)
+    if (root1 != NULL && root2 == NULL)
     {
-        pair<bool, int> p = make_pair(true, 0);
-        return p;
+        return false;
     }
 
-    pair<bool, int> left = isBalanceFast(root->left);
-    pair<bool, int> right = isBalanceFast(root->right);
+    bool left = isIdentical(root1->left, root2->left);
+    bool right = isIdentical(root1->right, root2->right);
 
-    int leftans = left.first;
-    int rightans = right.first;
+    bool value = root1->data == root2->data;
 
-    bool diff = abs(left.second - right.second) <= 1;
-
-    pair<bool, int> ans;
-    ans.second = max(left.second, right.second) + 1;
-
-    if (leftans && rightans && diff)
+    if (left && right && value)
     {
-        ans.first = true;
+        return true;
     }
-    else
-    {
-        ans.first = false;
-    }
-
-    return ans;
-}
-
-bool isBalance2(node *root){
-    return isBalanceFast(root).first;
+    else{
+        return false;
+    } 
 }
 
 int main()
 {
-    node *root = NULL;
+    node *root1 = NULL;
+    node *root2 = NULL;
 
-    buildFromLevelOrder(root); // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
+    cout << "First Binary Tree: \n";
 
-    levelOrderTraversal(root);
+    buildFromLevelOrder(root1); // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
 
-    if (isBalance2(root) == true)
+    cout << "Second Binary Tree: \n";
+
+    buildFromLevelOrder(root2);
+
+    cout << "Print First Binary Tree: \n";
+
+    levelOrderTraversal(root1);
+
+    cout << "Print Second Binary Tree: \n";
+
+    levelOrderTraversal(root2);
+
+    if (isIdentical(root1,root2) == true)
     {
-        cout << "Binary Tree is Balance" << endl;
+        cout << "Both BT are Identical\n";
     }
     else
     {
-        cout << "Binary Tree is Not Balance" << endl;
+        cout << "Both BT are not Identical\n";
     }
 
     return 0;
