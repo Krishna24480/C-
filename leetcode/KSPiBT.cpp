@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 #include <queue>
 using namespace std;
 
@@ -90,9 +91,39 @@ void levelOrderTraversal(node *root)
     }
 }
 
+void solve(node*root,int k,int &count,vector<int>path){
+
+    if (root == NULL)
+    {
+        return;
+    }
+
+    path.push_back(root->data);
+
+    solve(root->left, k, count, path);
+    solve(root->right, k, count, path);
+
+    int size = path.size();
+    int sum = 0;
+
+    for (int i = size - 1; i >= 0; i--)
+    {
+        sum = sum + path[i];
+        if (sum == k)
+        {
+            count++;
+        }   
+    }
+    path.pop_back();
+}
+
 int KSUM(node *root,int k)
 {
+    vector<int> path;
+    int count = 0;
 
+    solve(root, k, count, path);
+    return count;
 }
 
 int main()
@@ -103,7 +134,15 @@ int main()
 
     levelOrderTraversal(root);
 
+    cout << endl;
 
+    int k;
+    cout << "Enter the Value of k: " << endl;
+    cin >> k;
+
+    int Sum = KSUM(root, k);
+
+    cout << "Count Of " << k << " in Root is: " << Sum << endl;
 
     return 0;
 }
