@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <limits.h>
 using namespace std;
 
 class node
@@ -90,9 +91,58 @@ void levelOrderTraversal(node *root)
     }
 }
 
-int kthAncestor(node *root,int k , int node)
+node *solve(node *root, int &k, int Node)
 {
-   
+    if (root == NULL)
+    {
+        return NULL;
+    }
+
+    if (root->data == Node)
+    {
+        return root;
+    }
+
+    node* leftAns = solve(root->left, k, Node);
+    node* rightAns = solve(root->right, k, Node);
+
+    if (leftAns != NULL && rightAns == NULL)
+    {
+        k--;
+        if (k <= 0)
+        {
+            k = INT_MAX;
+            return root;
+        }
+        return leftAns;
+    }
+
+    if (leftAns == NULL && rightAns != NULL)
+    {
+        k--;
+        if (k <= 0)
+        {
+            k = INT_MAX;
+            return root;
+        }
+        return rightAns;
+    }
+    return NULL;
+}
+
+int kthAncestor(node *root,int k , int Node)
+{
+    node *ans = solve(root, k, Node);
+
+    if (ans == NULL || ans->data == Node)
+    {
+        return -1;
+    }
+    else
+    {
+        return ans->data;
+    }
+
 }
 
 int main()
@@ -107,11 +157,13 @@ int main()
     cout << "Enter The Value of K" << endl;
     cin >> k;
 
-    int node;
+    int Node;
     cout << "Enter The Value of node" << endl;
-    cin >> node;
+    cin >> Node;
 
-    int Ancesstor = kthAncestor(root, k, node);
-    
+    int Ancesstor = kthAncestor(root, k, Node);
+
+    cout << k << "th Ancesstor of " << Node << " is: " << Ancesstor << endl;
+
     return 0;
 }
