@@ -90,38 +90,10 @@ void levelOrderTraversal(node *root)
     }
 }
 
-node* LCA(node* root,int n1,int n2){
+int KSUM(node *root,int k)
+{
 
-    if (root == NULL)
-    {
-        return NULL;
-    }
-
-    if (root->data == n1 || root->data == n2)
-    {
-        return root;
-    }
-
-    node *leftAns = LCA(root->left, n1, n2);
-    node *rightAns = LCA(root->right, n1, n2);
-
-    if (leftAns != NULL && rightAns != NULL)
-    {
-        return root;
-    }
-    else if (leftAns != NULL && rightAns == NULL)
-    {
-        return leftAns;
-    }
-    else if (leftAns == NULL && rightAns != NULL)
-    {
-        return rightAns;
-    }
-    else{
-        return NULL;
-    }
 }
-
 
 int main()
 {
@@ -131,19 +103,7 @@ int main()
 
     levelOrderTraversal(root);
 
-    cout << endl;
 
-    int n1 ;
-    cout << "Enter the Value of n1" << endl;
-    cin >> n1;
-
-    int n2;
-    cout << "Enter the Value of n2" << endl;
-    cin >> n2;
-
-    node *Ans = LCA(root, n1, n2);
-
-    cout << "Longest Common Ancesster of " << n1 << " and " << n2 << " is: " << Ans->data << endl;
 
     return 0;
 }

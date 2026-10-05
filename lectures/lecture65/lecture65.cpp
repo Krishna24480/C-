@@ -12,8 +12,8 @@ int main()
     cout << "Longest Common Ancesster in Binary Tree\n";
     cout << "Answer in Leetcode(LCA) folder\n";
 
-    cout << "\n";
-    cout << "Answer in Leetcode() folder\n";
+    cout << "K Sum Path In Binary Tree\n";
+    cout << "Answer in Leetcode(KSPiBT) folder\n";
 
     cout << "\n";
     cout << "Answer in Leetcode() folder\n";
