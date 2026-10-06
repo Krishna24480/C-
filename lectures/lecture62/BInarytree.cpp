@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 
 class node
@@ -39,8 +40,14 @@ node *buildTree(node *root)
     return root;
 }
 
+// Normal Level Order Traversal
 void levelOrderTraversal(node *root)
 {
+    if (root == NULL)
+    {
+        return;
+    }
+
     queue<node *> q;
     q.push(root);
     q.push(NULL);
@@ -53,15 +60,16 @@ void levelOrderTraversal(node *root)
         if (temp == NULL)
         {
             cout << endl;
+
             if (!q.empty())
             {
                 q.push(NULL);
             }
         }
-
         else
         {
             cout << temp->data << " ";
+
             if (temp->left)
             {
                 q.push(temp->left);
@@ -75,24 +83,68 @@ void levelOrderTraversal(node *root)
     }
 }
 
-void  ReverselevelOrderTraversal (node* root){
-
-
-
-}
-
-void InOrderTraversal(node *root) //LNR
+// Reverse Level Order Traversal
+void ReverselevelOrderTraversal(node *root)
 {
     if (root == NULL)
     {
         return;
     }
+
+    queue<node *> q;
+    stack<node *> s;
+
+    q.push(root);
+
+    while (!q.empty())
+    {
+        node *temp = q.front();
+        q.pop();
+
+        s.push(temp);
+
+        // IMPORTANT:
+        // Push left first, then right.
+        // Stack will automatically reverse the order.
+        if (temp->left)
+        {
+            q.push(temp->left);
+        }
+
+        if (temp->right)
+        {
+            q.push(temp->right);
+        }
+    }
+
+    cout << "Reverse Level Order Traversal: ";
+
+    while (!s.empty())
+    {
+        node *temp = s.top();
+        s.pop();
+
+        cout << temp->data << " ";
+    }
+
+    cout << endl;
+}
+
+// InOrder Traversal - LNR
+void InOrderTraversal(node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
     InOrderTraversal(root->left);
     cout << root->data << " ";
     InOrderTraversal(root->right);
 }
 
-void PreOrderTraversal(node *root) // NLR
+// PreOrder Traversal - NLR
+void PreOrderTraversal(node *root)
 {
     if (root == NULL)
     {
@@ -104,23 +156,35 @@ void PreOrderTraversal(node *root) // NLR
     PreOrderTraversal(root->right);
 }
 
-void PostOrderTraversal(node *root) //LRN 
+// PostOrder Traversal - LRN
+void PostOrderTraversal(node *root)
 {
     if (root == NULL)
     {
         return;
     }
+
     PostOrderTraversal(root->left);
     PostOrderTraversal(root->right);
     cout << root->data << " ";
 }
 
-void buildFromLevelOrder(node* &root){
+// Build Tree From Level Order
+void buildFromLevelOrder(node *&root)
+{
+    queue<node *> q;
 
-    queue<node*> q;
     cout << "Enter Data for Root" << endl;
+
     int data;
     cin >> data;
+
+    if (data == -1)
+    {
+        root = NULL;
+        return;
+    }
+
     root = new node(data);
     q.push(root);
 
@@ -130,6 +194,7 @@ void buildFromLevelOrder(node* &root){
         q.pop();
 
         cout << "Enter Left Node for: " << temp->data << endl;
+
         int Leftdata;
         cin >> Leftdata;
 
@@ -140,6 +205,7 @@ void buildFromLevelOrder(node* &root){
         }
 
         cout << "Enter Right Node for: " << temp->data << endl;
+
         int Rightdata;
         cin >> Rightdata;
 
@@ -155,29 +221,37 @@ int main()
 {
     node *root = NULL;
 
-    buildFromLevelOrder(root); //1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1 
+    // Example Input:
+    // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
 
-    // root = buildTree(root);  // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+    buildFromLevelOrder(root);
+
+    cout << endl;
 
     cout << "Printing Tree: " << endl;
     levelOrderTraversal(root);
 
-    // L -> Left Part ma jao
-    // N-> Print node
-    // R ->  Right Part ma jao
+    cout << endl;
 
-    // cout << "Printing InOrder Tarversal: " << endl;
-    // InOrderTraversal(root); //LNR //7 3 11 1 17 5
+    // cout << "Printing Reverse Level Order Traversal: " << endl;
+    // ReverselevelOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing InOrder Traversal: " << endl;
+    InOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing PreOrder Traversal: " << endl;
+    PreOrderTraversal(root);
 
     // cout << endl;
 
-    // cout << "Printing PreOrder Tarversal: " << endl;
-    // PreOrderTraversal(root); // NLR //1 3 7 11 5 17
+    // cout << "Printing PostOrder Traversal: " << endl;
+    // PostOrderTraversal(root);
 
-    // cout << endl;
-
-    // cout << "Printing PostOrder Tarversal: " << endl;
-    // PostOrderTraversal(root); // LRN  // 7 11 3 17 5 1
+    cout << endl;
 
     return 0;
 }
