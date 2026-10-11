@@ -131,6 +131,30 @@ void PostOrderTraversal(Node *root)
     cout << root->data << " ";
 }
 
+Node *minValue(Node *root)
+{
+
+    Node *temp = root;
+
+    while (temp->left != NULL)
+    {
+        temp = temp->left;
+    }
+    return temp;
+}
+
+Node *maxValue(Node *root)
+{
+
+    Node *temp = root;
+
+    while (temp->right != NULL)
+    {
+        temp = temp->right;
+    }
+    return temp;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -147,18 +171,22 @@ int main()
 
     cout << endl;
 
-    cout << "Printing InOrder Traversal: " << endl;
-    InOrderTraversal(root);
+    // cout << "Printing InOrder Traversal: " << endl;
+    // InOrderTraversal(root);
 
-    cout << endl;
+    // cout << endl;
 
-    cout << "Printing PreOrder Traversal: " << endl;
-    PreOrderTraversal(root);
+    // cout << "Printing PreOrder Traversal: " << endl;
+    // PreOrderTraversal(root);
 
-    cout << endl;
+    // cout << endl;
 
-    cout << "Printing PostOrder Traversal: " << endl;
-    PostOrderTraversal(root);
+    // cout << "Printing PostOrder Traversal: " << endl;
+    // PostOrderTraversal(root);
+
+    cout << "Minimum Value in BST is: " << minValue(root)->data << endl;
+
+    cout << "Maximum Value in BST is: " << maxValue(root)->data << endl;
 
     cout << endl;
 
