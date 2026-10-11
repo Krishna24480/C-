@@ -243,8 +243,8 @@ int main()
 
     cout << endl;
 
-    cout << "Printing PreOrder Traversal: " << endl;
-    PreOrderTraversal(root);
+    // cout << "Printing PreOrder Traversal: " << endl;
+    // PreOrderTraversal(root);
 
     // cout << endl;
 

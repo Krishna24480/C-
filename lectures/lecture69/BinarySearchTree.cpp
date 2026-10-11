@@ -90,6 +90,45 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+// InOrder Traversal - LNR
+void InOrderTraversal(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    InOrderTraversal(root->left);
+    cout << root->data << " ";
+    InOrderTraversal(root->right);
+}
+
+// PreOrder Traversal - NLR
+void PreOrderTraversal(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    cout << root->data << " ";
+    PreOrderTraversal(root->left);
+    PreOrderTraversal(root->right);
+}
+
+// PostOrder Traversal - LRN
+void PostOrderTraversal(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    PostOrderTraversal(root->left);
+    PostOrderTraversal(root->right);
+    cout << root->data << " ";
+}
+
 int main()
 {
     Node *root = NULL;
@@ -100,6 +139,23 @@ int main()
 
     cout << "Print Binary Search Tree: " << endl;
     levelOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing InOrder Traversal: " << endl;
+    InOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing PreOrder Traversal: " << endl;
+    PreOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing PostOrder Traversal: " << endl;
+    PostOrderTraversal(root);
+
+    cout << endl;
 
     return 0;
 }
