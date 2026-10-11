@@ -115,6 +115,29 @@ bool SearchinBST(Node* root, int x){
     
 }
 
+bool SearchinBST2(Node *root, int x)
+{
+    Node *temp = root;
+
+    while (temp != NULL)
+    {
+        if (temp->data == x)
+        {
+            return true;
+        }
+        if (temp->data>x)
+        {
+            temp = temp->left;
+        }
+        else
+        {
+            temp = temp->right;
+        }
+    }
+
+    return false;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -137,7 +160,7 @@ int main()
 
     cout << endl;
 
-    if (SearchinBST(root,x) == true)
+    if (SearchinBST2(root,x) == true)
     {
         cout << "X is Present in BST" << endl;
     }
@@ -146,6 +169,5 @@ int main()
         cout << "X is not Present in BST" << endl;
     }
     
-
     return 0;
 }
