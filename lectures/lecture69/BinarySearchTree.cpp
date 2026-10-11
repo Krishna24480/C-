@@ -1,5 +1,5 @@
 #include <iostream>
-#include<queue>
+#include <queue>
 using namespace std;
 
 class Node
@@ -17,7 +17,8 @@ public:
     }
 };
 
-Node* inserIntoBst(Node *root, int d) {
+Node *inserIntoBst(Node *root, int d)
+{
 
     if (root == NULL)
     {
@@ -29,13 +30,14 @@ Node* inserIntoBst(Node *root, int d) {
     {
         root->right = inserIntoBst(root->right, d);
     }
-    else{
+    else
+    {
         root->left = inserIntoBst(root->left, d);
     }
 
     return root;
 };
- 
+
 void takeInput(Node *&root)
 {
     int data;
@@ -43,7 +45,7 @@ void takeInput(Node *&root)
 
     while (data != -1)
     {
-      root = inserIntoBst(root, data);
+        root = inserIntoBst(root, data);
         cin >> data;
     }
 }
@@ -132,6 +134,9 @@ void PostOrderTraversal(Node *root)
 int main()
 {
     Node *root = NULL;
+
+    // Example Input:
+    // 10 8 21 7 27 5 4 3 -1
 
     cout << "Enter Data to Create BST: " << endl;
 
