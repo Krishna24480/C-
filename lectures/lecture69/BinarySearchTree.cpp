@@ -221,27 +221,48 @@ int main()
 
     cout << endl;
 
-    // cout << "Printing InOrder Traversal: " << endl;
-    // InOrderTraversal(root);
+    cout << "Printing InOrder Traversal: " << endl;
+    InOrderTraversal(root);
 
-    // cout << endl;
+    cout << endl;
 
-    // cout << "Printing PreOrder Traversal: " << endl;
-    // PreOrderTraversal(root);
+    cout << "Printing PreOrder Traversal: " << endl;
+    PreOrderTraversal(root);
 
-    // cout << endl;
+    cout << endl;
 
-    // cout << "Printing PostOrder Traversal: " << endl;
-    // PostOrderTraversal(root);
+    cout << "Printing PostOrder Traversal: " << endl;
+    PostOrderTraversal(root);
 
     cout << "Minimum Value in BST is: " << minValue(root)->data << endl;
 
     cout << "Maximum Value in BST is: " << maxValue(root)->data << endl;
 
+   //Delete Node Froom BST
+
     root = DeleteFromBST(root, 30);
 
     cout << "Print Binary Search Tree After Delete Node: " << endl;
     levelOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing InOrder Traversal: " << endl;
+    InOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing PreOrder Traversal: " << endl;
+    PreOrderTraversal(root);
+
+    cout << endl;
+
+    cout << "Printing PostOrder Traversal: " << endl;
+    PostOrderTraversal(root);
+
+    cout << "Minimum Value in BST is: " << minValue(root)->data << endl;
+
+    cout << "Maximum Value in BST is: " << maxValue(root)->data << endl;
 
     return 0;
 }
