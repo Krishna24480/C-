@@ -155,12 +155,62 @@ Node *maxValue(Node *root)
     return temp;
 }
 
+Node *DeleteFromBST(Node *root, int val)
+{
+
+    if (root == NULL)
+    {
+        return root;
+    }
+    if (root->data == val)
+    {
+        if (root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+
+        if (root->left != NULL && root->right == NULL)
+        {
+            Node *temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        if (root->left == NULL && root->right != NULL)
+        {
+            Node *temp = root->right;
+            delete root;
+            return temp;
+        }
+
+        if (root->left != NULL && root->right != NULL)
+        {
+            int mini = minValue(root->right)->data;
+            root->data = mini;
+            root->right = DeleteFromBST(root->right, mini);
+            return root;
+        }
+    }
+    else if (root->data > val)
+    {
+        root->left = DeleteFromBST(root->left, val);
+        return root;
+    }
+    else
+    {
+        root->right = DeleteFromBST(root->right, val);
+        return root;
+    }
+}
+
 int main()
 {
     Node *root = NULL;
 
     // Example Input:
     // 10 8 21 7 27 5 4 3 -1
+    //50 20 70 10 30 90 110 -1
 
     cout << "Enter Data to Create BST: " << endl;
 
@@ -188,7 +238,10 @@ int main()
 
     cout << "Maximum Value in BST is: " << maxValue(root)->data << endl;
 
-    cout << endl;
+    root = DeleteFromBST(root, 30);
+
+    cout << "Print Binary Search Tree After Delete Node: " << endl;
+    levelOrderTraversal(root);
 
     return 0;
 }
