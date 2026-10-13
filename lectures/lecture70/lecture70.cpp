@@ -9,8 +9,8 @@ int main()
     cout << "Validate Binary Search Tree\n";
     cout << "Answer in Leetcode(VBSTA) folder\n";
 
-    cout << " \n";
-    cout << "Answer in Leetcode() folder\n";
+    cout << "Find Kth Smallest Element in Binary Search Tree \n";
+    cout << "Answer in Leetcode(FkthSEBST) folder\n";
 
     return 0;
 }
