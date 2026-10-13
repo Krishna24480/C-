@@ -12,5 +12,11 @@ int main()
     cout << "Find Kth Smallest Element in Binary Search Tree \n";
     cout << "Answer in Leetcode(FkthSEBST) folder\n";
 
+    cout << "Find Kth Largest Element in Binary Search Tree \n";
+    cout << "Answer in Leetcode(FkthLEBST) folder\n";
+
+    cout << "Predecessor and Successor in Binary Search Tree \n";
+    cout << "Answer in Leetcode(PaSiBST) folder\n";
+
     return 0;
 }

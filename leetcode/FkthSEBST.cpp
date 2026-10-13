@@ -106,6 +106,37 @@ void InOrderTraversal(Node *root)
     InOrderTraversal(root->right);
 }
 
+int Solve(Node *root, int &i, int k)
+{
+    if (root == NULL)
+    {
+        return -1;
+    }
+
+    int left = Solve(root->left, i, k);
+
+    if (left != -1)
+    {
+        return left;
+    }
+
+    i++;
+
+    if (i == k)
+    {
+        return root->data;
+    }
+
+    return Solve(root->right, i, k);
+}
+
+int KthSmallestBST(Node *root, int k)
+{
+    int i = 0;
+    int ans = Solve(root, i, k);
+    return ans;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -123,6 +154,15 @@ int main()
 
     cout << endl;
 
+    int k;
+    cout << "Enter the Value\n";
+    cin >> k;
+
+    cout << endl;
+
+    int KthSmall = KthSmallestBST(root, k);
+
+    cout << k << "th Samllest Element in BST is: " << KthSmall << endl;
 
     return 0;
 }
