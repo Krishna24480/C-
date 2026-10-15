@@ -75,7 +75,7 @@ class Hero {
 
     //Destructor
     ~Hero() {   
-        // cout << "Destructor bhai called" << endl;
+         cout << "Destructor bhai called" << endl;
     }
 
 };
@@ -84,18 +84,18 @@ int Hero::timeToComplete = 5;
 
 int main() {
 
-    //cout << Hero::timeToComplete << endl;
-    // cout << Hero::random() << endl;
+    cout << Hero::timeToComplete << endl;
+    cout << Hero::random() << endl;
 
-    // Hero a;
+    Hero a;
 
-    // cout << a.timeToComplete << endl;
+    cout << a.timeToComplete << endl;
 
 
-    // Hero b;
-    // b.timeToComplete = 10 ;
-    // cout  << a.timeToComplete << endl;
-    // cout << b.timeToComplete << endl;
+    Hero b;
+    b.timeToComplete = 10 ;
+    cout  << a.timeToComplete << endl;
+    cout << b.timeToComplete << endl;
 
 
 
@@ -122,31 +122,31 @@ int main() {
 
 
 
-    Hero hero1;
+//     Hero hero1;
 
-    hero1.setHealth(12);
-    hero1.setLevel('D');
-    char name[7] = "Babbar";
-    hero1.setName(name);
+//     hero1.setHealth(12);
+//     hero1.setLevel('D');
+//     char name[7] = "Babbar";
+//     hero1.setName(name);
 
-    //hero1.print();
+//     //hero1.print();
 
-    //use default copy constructor
+//     //use default copy constructor
 
-    Hero hero2(hero1);
-    //hero2.print();
-//    Hero hero2 = hero1;
+//     Hero hero2(hero1);
+//     //hero2.print();
+// //    Hero hero2 = hero1;
 
-    hero1.name[0] = 'G';
-    hero1.print();
+//     hero1.name[0] = 'G';
+//     hero1.print();
 
-    hero2.print();
+//     hero2.print();
 
-    hero1 = hero2;
+//     hero1 = hero2;
 
-    hero1.print();
+//     hero1.print();
 
-    hero2.print();
+//     hero2.print();
 
 
     

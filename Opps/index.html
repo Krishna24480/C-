@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete Object-Oriented Programming in C++ tutorial">
+    <title>OOPs in C++ | Complete Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero" id="top">
+        <nav class="navbar">
+            <a class="logo" href="#top">C++ <span>OOPs</span></a>
+            <div class="nav-links">
+                <a href="#introduction">Introduction</a>
+                <a href="#pillars">Four Pillars</a>
+                <a href="#inheritance">Inheritance</a>
+                <a href="#polymorphism">Polymorphism</a>
+                <a href="#practice">Practice</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <p class="eyebrow">C++ PROGRAMMING GUIDE</p>
+            <h1>Master <span>OOPs</span> in C++</h1>
+            <p>
+                Learn Object-Oriented Programming from the basics to advanced
+                concepts with clear explanations, real-world examples and C++ code.
+            </p>
+            <a class="primary-btn" href="#introduction">Start Learning ↓</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <aside class="notice">
+            <strong>Learning tip:</strong>
+            Read each explanation, understand the example, and then write the
+            program yourself. Practice makes OOP concepts easier to remember.
+        </aside>
+
+        <!-- INTRODUCTION -->
+        <section id="introduction" class="topic">
+            <p class="section-label">CHAPTER 01</p>
+            <h2>What is OOPs?</h2>
+
+            <p>
+                OOPs stands for Object-Oriented Programming System. It is a
+                programming paradigm in which programs are organized around
+                objects that combine data and functions.
+            </p>
+
+            <p>
+                C++ supports procedural programming as well as object-oriented
+                programming. OOP is especially useful when developing large
+                applications that need reusable, organized and maintainable code.
+            </p>
+
+            <div class="example-box">
+                <h3>Real-world example: A car</h3>
+                <p>A car has data such as its brand, color and speed.</p>
+                <p>It also has actions such as starting, braking and accelerating.</p>
+                <p>
+                    In an object-oriented program, these properties and actions
+                    can be represented together in a class.
+                </p>
+            </div>
+
+            <h3>Procedural programming vs OOP</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Procedural approach</th>
+                            <th>Object-oriented approach</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organizes code around functions.</td>
+                            <td>Organizes code around classes and objects.</td>
+                        </tr>
+                        <tr>
+                            <td>Data and functions are often separate.</td>
+                            <td>Data and related functions can be grouped.</td>
+                        </tr>
+                        <tr>
+                            <td>Code reuse can use functions.</td>
+                            <td>Reuse can also use inheritance and composition.</td>
+                        </tr>
+                        <tr>
+                            <td>Useful for many small, task-focused programs.</td>
+                            <td>Useful for modeling complex systems and relationships.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CLASS AND OBJECT -->
+        <section id="class-object" class="topic">
+            <p class="section-label">CHAPTER 02</p>
+            <h2>Class and Object</h2>
+
+            <h3>What is a class?</h3>
+            <p>
+                A class is a user-defined type that groups data members and member
+                functions into one unit. It acts as a blueprint for creating objects.
+            </p>
+
+            <h3>What is an object?</h3>
+            <p>
+                An object is an instance of a class. Each ordinary object has its
+                own non-static data members.
+            </p>
+
+            <div class="example-box">
+                <p><strong>Example:</strong> A class is the blueprint of a house.
+                    Individual houses built from that blueprint are objects.</p>
+            </div>
+
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int age;
+
+    void display() {
+        cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "Age: " &lt;&lt; age &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Student s1;
+
+    s1.name = "Rahul";
+    s1.age = 20;
+
+    s1.display();
+    return 0;
+}</code></pre>
+
+            <h3>Output</h3>
+            <pre><code>Name: Rahul
+Age: 20</code></pre>
+
+            <h3>Important class concepts</h3>
+            <ul>
+                <li><strong>Data members:</strong> Variables declared inside a class.</li>
+                <li><strong>Member functions:</strong> Functions belonging to a class.</li>
+                <li><strong>Instantiation:</strong> Creating an object of a class.</li>
+                <li><strong>Dot operator (.):</strong> Accesses accessible members through an object.</li>
+            </ul>
+        </section>
+
+        <!-- ACCESS SPECIFIERS -->
+        <section id="access" class="topic">
+            <p class="section-label">CHAPTER 03</p>
+            <h2>Access Specifiers</h2>
+
+            <p>
+                Access specifiers control which parts of a program can access
+                class members.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Specifier</th>
+                            <th>Inside class</th>
+                            <th>Outside class</th>
+                            <th>Derived class</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>public</td>
+                            <td>Yes</td>
+                            <td>Yes, through accessible objects or other valid access</td>
+                            <td>Yes, subject to inheritance rules</td>
+                        </tr>
+                        <tr>
+                            <td>private</td>
+                            <td>Yes</td>
+                            <td>No direct access</td>
+                            <td>No direct access to the base's private members</td>
+                        </tr>
+                        <tr>
+                            <td>protected</td>
+                            <td>Yes</td>
+                            <td>No direct access</td>
+                            <td>Yes, subject to inheritance rules</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <pre><code>class BankAccount {
+private:
+    double balance = 0;
+
+public:
+    void deposit(double amount) {
+        if (amount &gt; 0) {
+            balance += amount;
+        }
+    }
+
+    double getBalance() const {
+        return balance;
+    }
+};
+
+int main() {
+    BankAccount account;
+    account.deposit(500);
+    cout &lt;&lt; account.getBalance();
+
+    // account.balance = 1000; // Error: private member
+}</code></pre>
+
+            <p>
+                <strong>Remember:</strong> Class members are private by default.
+                Members of a struct are public by default.
+            </p>
+        </section>
+
+        <!-- ENCAPSULATION -->
+        <section id="encapsulation" class="topic">
+            <p class="section-label">CHAPTER 04</p>
+            <h2>Encapsulation</h2>
+
+            <p>
+                Encapsulation means combining data and the functions that operate
+                on it into a class, while controlling how that data is accessed.
+            </p>
+
+            <p>
+                Making data private and providing validated public operations is
+                a common way to implement encapsulation.
+            </p>
+
+            <pre><code>class Employee {
+private:
+    double salary;
+
+public:
+    Employee() : salary(0) {}
+
+    void setSalary(double amount) {
+        if (amount &gt;= 0) {
+            salary = amount;
+        }
+    }
+
+    double getSalary() const {
+        return salary;
+    }
+};</code></pre>
+
+            <h3>Why use encapsulation?</h3>
+            <ul>
+                <li>Prevents uncontrolled direct modification of private data.</li>
+                <li>Allows validation before changing an object's state.</li>
+                <li>Makes code easier to maintain.</li>
+                <li>Hides implementation details behind a public interface.</li>
+            </ul>
+        </section>
+
+        <!-- ABSTRACTION -->
+        <section id="abstraction" class="topic">
+            <p class="section-label">CHAPTER 05</p>
+            <h2>Abstraction</h2>
+
+            <p>
+                Abstraction means exposing the essential operations of a system
+                while hiding unnecessary implementation details.
+            </p>
+
+            <div class="example-box">
+                <h3>Real-world example: ATM</h3>
+                <p>
+                    You select Withdraw and enter an amount. You do not need to
+                    understand the internal banking network or cash-dispenser
+                    mechanism to use the feature.
+                </p>
+            </div>
+
+            <p>In C++, abstraction can be achieved with classes, public interfaces
+                and abstract classes.</p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Shape {
+public:
+    virtual double area() const = 0;
+
+    virtual ~Shape() = default;
+};
+
+class Rectangle : public Shape {
+private:
+    double width;
+    double height;
+
+public:
+    Rectangle(double w, double h)
+        : width(w), height(h) {}
+
+    double area() const override {
+        return width * height;
+    }
+};
+
+int main() {
+    Rectangle r(5, 4);
+    cout &lt;&lt; r.area();
+}</code></pre>
+
+            <p>
+                The abstract class defines what a shape must provide. The
+                Rectangle class supplies the implementation.
+            </p>
+        </section>
+
+        <!-- INHERITANCE -->
+        <section id="inheritance" class="topic">
+            <p class="section-label">CHAPTER 06</p>
+            <h2>Inheritance</h2>
+
+            <p>
+                Inheritance allows a derived class to acquire accessible members
+                and behavior from a base class. It supports reuse and the modeling
+                of "is-a" relationships.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout &lt;&lt; "Animal is eating\n";
+    }
+};
+
+class Dog : public Animal {
+public:
+    void bark() {
+        cout &lt;&lt; "Dog is barking\n";
+    }
+};
+
+int main() {
+    Dog d;
+    d.eat();
+    d.bark();
+}</code></pre>
+
+            <h3>Types of inheritance</h3>
+
+            <div class="mini-card">
+                <h4>1. Single inheritance</h4>
+                <p>One derived class inherits from one base class.</p>
+                <pre><code>class A {};
+class B : public A {};</code></pre>
+            </div>
+
+            <div class="mini-card">
+                <h4>2. Multiple inheritance</h4>
+                <p>One derived class inherits from multiple base classes.</p>
+                <pre><code>class A {};
+class B {};
+class C : public A, public B {};</code></pre>
+            </div>
+
+            <div class="mini-card">
+                <h4>3. Multilevel inheritance</h4>
+                <p>A class derives from a class that is already derived.</p>
+                <pre><code>class A {};
+class B : public A {};
+class C : public B {};</code></pre>
+            </div>
+
+            <div class="mini-card">
+                <h4>4. Hierarchical inheritance</h4>
+                <p>Multiple derived classes inherit from the same base class.</p>
+                <pre><code>class A {};
+class B : public A {};
+class C : public A {};</code></pre>
+            </div>
+
+            <div class="mini-card">
+                <h4>5. Hybrid inheritance</h4>
+                <p>A combination of two or more inheritance structures.</p>
+                <pre><code>class A {};
+class B : public A {};
+class C : public A {};
+class D : public B, public C {};</code></pre>
+                <p>
+                    In this diamond structure, D may contain two A subobjects.
+                    Virtual inheritance can share one common A base subobject.
+                </p>
+            </div>
+
+            <h3>Public, protected and private inheritance</h3>
+            <p>
+                The inheritance mode changes the accessibility of inherited
+                public and protected members. A base class's private members
+                remain inaccessible directly to derived classes.
+            </p>
+
+            <pre><code>class Base {
+public:
+    int x = 10;
+
+protected:
+    int y = 20;
+
+private:
+    int z = 30;
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        cout &lt;&lt; x &lt;&lt; " " &lt;&lt; y;
+        // z cannot be accessed directly here
+    }
+};</code></pre>
+        </section>
+
+        <!-- POLYMORPHISM -->
+        <section id="polymorphism" class="topic">
+            <p class="section-label">CHAPTER 07</p>
+            <h2>Polymorphism</h2>
+
+            <p>
+                Polymorphism means "many forms". It lets the same function name
+                or interface behave differently depending on the arguments or
+                the actual object involved.
+            </p>
+
+            <h3>1. Compile-time polymorphism</h3>
+            <p>
+                The compiler resolves which overloaded function or operator
+                to use based on the types and expressions involved.
+            </p>
+
+            <h4>Function overloading</h4>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+};
+
+int main() {
+    Calculator c;
+    cout &lt;&lt; c.add(2, 3) &lt;&lt; endl;
+    cout &lt;&lt; c.add(2.5, 3.5) &lt;&lt; endl;
+    cout &lt;&lt; c.add(1, 2, 3);
+}</code></pre>
+
+            <h4>Operator overloading</h4>
+            <p>
+                Operator overloading defines how an existing C++ operator works
+                for a user-defined type.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Number {
+public:
+    int value;
+
+    Number(int v) : value(v) {}
+
+    Number operator+(const Number&amp; other) const {
+        return Number(value + other.value);
+    }
+};
+
+int main() {
+    Number a(10), b(20);
+    Number c = a + b;
+
+    cout &lt;&lt; c.value;
+}</code></pre>
+
+            <h3>2. Runtime polymorphism</h3>
+            <p>
+                Runtime polymorphism commonly uses virtual functions and base
+                pointers or references. The overridden function is selected
+                according to the object's dynamic type.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() const {
+        cout &lt;&lt; "Animal sound\n";
+    }
+
+    virtual ~Animal() = default;
+};
+
+class Dog : public Animal {
+public:
+    void sound() const override {
+        cout &lt;&lt; "Dog barks\n";
+    }
+};
+
+class Cat : public Animal {
+public:
+    void sound() const override {
+        cout &lt;&lt; "Cat meows\n";
+    }
+};
+
+int main() {
+    Dog dog;
+    Cat cat;
+
+    Animal&amp; a1 = dog;
+    Animal&amp; a2 = cat;
+
+    a1.sound();
+    a2.sound();
+}</code></pre>
+
+            <h3>Function overloading vs overriding</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Overloading</th>
+                            <th>Overriding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Usually same name, different parameter lists.</td>
+                            <td>Derived class supplies a new implementation of a virtual base function.</td>
+                        </tr>
+                        <tr>
+                            <td>Resolved at compile time.</td>
+                            <td>Supports runtime dispatch when called virtually.</td>
+                        </tr>
+                        <tr>
+                            <td>Does not require inheritance.</td>
+                            <td>Requires an inherited virtual function for virtual overriding.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CONSTRUCTORS -->
+        <section id="constructors" class="topic">
+            <p class="section-label">CHAPTER 08</p>
+            <h2>Constructors</h2>
+
+            <p>
+                A constructor is a special member function that initializes an
+                object when it is created. It has the same name as the class
+                and has no return type.
+            </p>
+
+            <h3>Default constructor</h3>
+            <pre><code>class Student {
+public:
+    int age;
+
+    Student() : age(0) {}
+};</code></pre>
+
+            <h3>Parameterized constructor</h3>
+            <pre><code>class Student {
+public:
+    string name;
+    int age;
+
+    Student(string n, int a) : name(n), age(a) {}
+};
+
+// Student s("Rahul", 20);</code></pre>
+
+            <h3>Copy constructor</h3>
+            <p>Initializes an object from another object of the same type.</p>
+            <pre><code>class Box {
+public:
+    int value;
+
+    Box(int v) : value(v) {}
+
+    Box(const Box&amp; other) : value(other.value) {}
+};
+
+// Box a(10);
+// Box b(a);</code></pre>
+
+            <h3>Move constructor</h3>
+            <p>
+                A move constructor can transfer resources from an object that
+                is about to be discarded, instead of copying those resources.
+            </p>
+            <pre><code>#include &lt;utility&gt;
+
+class Box {
+public:
+    unique_ptr&lt;int&gt; value;
+
+    Box(int v) : value(make_unique&lt;int&gt;(v)) {}
+
+    Box(Box&amp;&amp; other) noexcept
+        : value(move(other.value)) {}
+};</code></pre>
+
+            <p>
+                This example requires <code>#include &lt;memory&gt;</code> and
+                <code>#include &lt;utility&gt;</code>, plus
+                <code>using namespace std;</code> or qualified standard-library names.
+            </p>
+
+            <h3>Constructor overloading</h3>
+            <p>
+                A class can define multiple constructors with different parameter
+                lists to support different initialization options.
+            </p>
+
+            <h3>Important constructor rules</h3>
+            <ul>
+                <li>Constructors do not have return types.</li>
+                <li>Constructors can be overloaded.</li>
+                <li>Constructors are not inherited in the same way as ordinary member functions, though derived classes
+                    can inherit constructor declarations with using.</li>
+                <li>Use member initializer lists to initialize members, especially const members and references.</li>
+                <li>Declaring some constructors can prevent the compiler from generating a default constructor
+                    automatically.</li>
+            </ul>
+        </section>
+
+        <!-- DESTRUCTOR -->
+        <section id="destructors" class="topic">
+            <p class="section-label">CHAPTER 09</p>
+            <h2>Destructors</h2>
+
+            <p>
+                A destructor runs when an object's lifetime ends. It is commonly
+                used to release resources owned by that object.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Demo {
+public:
+    Demo() {
+        cout &lt;&lt; "Constructor called\n";
+    }
+
+    ~Demo() {
+        cout &lt;&lt; "Destructor called\n";
+    }
+};
+
+int main() {
+    Demo d;
+}</code></pre>
+
+            <h3>Output</h3>
+            <pre><code>Constructor called
+Destructor called</code></pre>
+
+            <ul>
+                <li>A class has one destructor, not an overloaded set.</li>
+                <li>A destructor has no return type or parameters.</li>
+                <li>Local automatic objects are normally destroyed when they leave scope.</li>
+                <li>A polymorphic base class generally needs a public virtual destructor if objects may be deleted
+                    through base pointers.</li>
+                <li>Prefer standard resource-managing types such as string, vector and unique_ptr instead of manual
+                    memory management.</li>
+            </ul>
+        </section>
+
+        <!-- THIS POINTER -->
+        <section id="this-pointer" class="topic">
+            <p class="section-label">CHAPTER 10</p>
+            <h2>The this Pointer</h2>
+
+            <p>
+                In a non-static member function, <code>this</code> points to
+                the object on which the function is being called.
+            </p>
+
+            <pre><code>class Student {
+public:
+    int age;
+
+    Student(int age) {
+        this-&gt;age = age;
+    }
+
+    Student&amp; setAge(int age) {
+        this-&gt;age = age;
+        return *this;
+    }
+};</code></pre>
+
+            <p>
+                Here, <code>this-&gt;age</code> refers to the object's member,
+                while <code>age</code> refers to the constructor or function parameter.
+            </p>
+        </section>
+
+        <!-- STATIC -->
+        <section id="static" class="topic">
+            <p class="section-label">CHAPTER 11</p>
+            <h2>Static Data Members and Functions</h2>
+
+            <p>
+                A static data member belongs to the class rather than to each
+                individual object. A static member function can be called using
+                the class name and cannot use <code>this</code>.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Student {
+public:
+    inline static int count = 0;
+
+    Student() {
+        count++;
+    }
+
+    static void showCount() {
+        cout &lt;&lt; count;
+    }
+};
+
+int main() {
+    Student a, b, c;
+    Student::showCount();
+}</code></pre>
+
+            <p>
+                Output: <code>3</code>. The example uses an inline static data
+                member, supported in C++17 and later.
+            </p>
+        </section>
+
+        <!-- FRIEND -->
+        <section id="friend" class="topic">
+            <p class="section-label">CHAPTER 12</p>
+            <h2>Friend Function and Friend Class</h2>
+
+            <p>
+                A friend function or class can access the private and protected
+                members of the class that declares it as a friend.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Box {
+private:
+    int value = 100;
+
+    friend void show(const Box&amp; b);
+
+public:
+    Box() = default;
+};
+
+void show(const Box&amp; b) {
+    cout &lt;&lt; b.value;
+}
+
+int main() {
+    Box b;
+    show(b);
+}</code></pre>
+
+            <p>
+                Friend access is granted explicitly by the class. Friendship is
+                not automatically mutual or inherited.
+            </p>
+        </section>
+
+        <!-- VIRTUAL -->
+        <section id="virtual" class="topic">
+            <p class="section-label">CHAPTER 13</p>
+            <h2>Virtual Functions and Abstract Classes</h2>
+
+            <h3>Virtual function</h3>
+            <p>
+                A virtual function enables dynamic dispatch when called through
+                an appropriate base pointer or reference.
+            </p>
+
+            <h3>Pure virtual function</h3>
+            <p>
+                A pure virtual function is declared with <code>= 0</code>.
+                It makes the class abstract when the class has an unimplemented
+                pure virtual requirement.
+            </p>
+
+            <pre><code>class Payment {
+public:
+    virtual void pay(double amount) = 0;
+    virtual ~Payment() = default;
+};
+
+class UpiPayment : public Payment {
+public:
+    void pay(double amount) override {
+        cout &lt;&lt; "Paid using UPI: " &lt;&lt; amount;
+    }
+};</code></pre>
+
+            <p>
+                You cannot create an object of the abstract class Payment, but
+                you can use a Payment pointer or reference to refer to a concrete
+                derived object.
+            </p>
+        </section>
+
+        <!-- OBJECT LIFETIME -->
+        <section id="object-lifetime" class="topic">
+            <p class="section-label">CHAPTER 14</p>
+            <h2>Object Relationships and Special Concepts</h2>
+
+            <h3>Association</h3>
+            <p>
+                A general relationship between two objects. For example,
+                a teacher teaches a student.
+            </p>
+
+            <h3>Aggregation</h3>
+            <p>
+                A whole-part relationship in which the parts can have an
+                independent lifetime. For example, a department can refer to
+                teachers who exist independently of it.
+            </p>
+
+            <h3>Composition</h3>
+            <p>
+                A strong whole-part relationship in which a containing object
+                owns its components and manages their lifetimes. For example,
+                a car object might own an engine object.
+            </p>
+
+            <h3>Early binding and late binding</h3>
+            <p>
+                Early binding resolves a call before runtime. Late binding
+                resolves the appropriate virtual function at runtime based
+                on dynamic type.
+            </p>
+
+            <h3>Shallow copy and deep copy</h3>
+            <p>
+                A shallow copy copies member values as they are represented.
+                If a member is a raw pointer, this copies the pointer address,
+                not the resource it points to. A deep copy duplicates the
+                owned resource where appropriate.
+            </p>
+
+            <p>
+                Modern C++ often avoids manual deep-copy logic by using
+                resource-managing types and the Rule of Zero.
+            </p>
+        </section>
+
+        <!-- MEMORY -->
+        <section id="memory" class="topic">
+            <p class="section-label">CHAPTER 15</p>
+            <h2>Dynamic Objects and Memory Management</h2>
+
+            <p>
+                Objects can be created dynamically when their lifetime or
+                allocation needs to be controlled. In modern C++, smart pointers
+                are preferred to owning raw pointers.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+class Student {
+public:
+    Student() {
+        cout &lt;&lt; "Student created\n";
+    }
+};
+
+int main() {
+    auto student = make_unique&lt;Student&gt;();
+
+    // The Student is destroyed automatically
+    // when student leaves scope.
+}</code></pre>
+
+            <p>
+                <code>unique_ptr</code> provides exclusive ownership.
+                <code>shared_ptr</code> provides shared ownership, while
+                <code>weak_ptr</code> observes an object managed by shared_ptr
+                without extending its lifetime.
+            </p>
+
+            <p>
+                Avoid pairing raw <code>new</code> and <code>delete</code>
+                unnecessarily. Prefer RAII and standard-library containers.
+            </p>
+        </section>
+
+        <!-- CONST -->
+        <section id="const" class="topic">
+            <p class="section-label">CHAPTER 16</p>
+            <h2>Const Member Functions and Objects</h2>
+
+            <p>
+                A const member function promises not to modify the object's
+                non-mutable data members through the implicit object parameter.
+            </p>
+
+            <pre><code>class Circle {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    double getRadius() const {
+        return radius;
+    }
+
+    double area() const {
+        return 3.14159 * radius * radius;
+    }
+};</code></pre>
+
+            <p>
+                A const object can call const member functions, but generally
+                cannot call non-const member functions.
+            </p>
+        </section>
+
+        <!-- NAMESPACES -->
+        <section id="namespaces" class="topic">
+            <p class="section-label">CHAPTER 17</p>
+            <h2>Namespaces and Scope Resolution</h2>
+
+            <p>
+                Namespaces organize names and help prevent naming conflicts.
+                The scope resolution operator <code>::</code> accesses a
+                name within a scope.
+            </p>
+
+            <pre><code>#include &lt;iostream&gt;
+
+namespace First {
+    int value = 10;
+}
+
+namespace Second {
+    int value = 20;
+}
+
+int main() {
+    std::cout &lt;&lt; First::value &lt;&lt; '\n';
+    std::cout &lt;&lt; Second::value;
+}</code></pre>
+
+            <p>
+                Prefer explicit namespace qualification in larger projects
+                instead of placing <code>using namespace std;</code> in
+                public headers.
+            </p>
+        </section>
+
+        <!-- RULE OF THREE/FIVE/ZERO -->
+        <section id="rules" class="topic">
+            <p class="section-label">CHAPTER 18</p>
+            <h2>Rule of Three, Five and Zero</h2>
+
+            <h3>Rule of Three</h3>
+            <p>
+                If a class needs a custom destructor, copy constructor or copy
+                assignment operator because it manages a resource, it may need
+                all three.
+            </p>
+
+            <h3>Rule of Five</h3>
+            <p>
+                Modern C++ adds the move constructor and move assignment operator
+                to the three copy/destruction operations.
+            </p>
+
+            <h3>Rule of Zero</h3>
+            <p>
+                Prefer member types that manage their own resources so the class
+                does not need custom copy, move or destruction functions.
+            </p>
+
+            <pre><code>#include &lt;string&gt;
+#include &lt;vector&gt;
+
+class Team {
+private:
+    std::string name;
+    std::vector&lt;std::string&gt; members;
+
+public:
+    Team(std::string n, std::vector&lt;std::string&gt; m)
+        : name(std::move(n)), members(std::move(m)) {}
+};</code></pre>
+
+            <p>
+                This class can use compiler-generated copy, move and destruction
+                behavior because its standard-library members manage their resources.
+            </p>
+        </section>
+
+        <!-- FOUR PILLARS SUMMARY -->
+        <section id="pillars" class="topic">
+            <p class="section-label">CHAPTER 19</p>
+            <h2>The Four Pillars of OOP</h2>
+
+            <div class="pillar-grid">
+                <article class="pillar">
+                    <span>01</span>
+                    <h3>Encapsulation</h3>
+                    <p>Bundle data and operations, controlling access to internal state.</p>
+                </article>
+
+                <article class="pillar">
+                    <span>02</span>
+                    <h3>Abstraction</h3>
+                    <p>Expose essential operations while hiding implementation details.</p>
+                </article>
+
+                <article class="pillar">
+                    <span>03</span>
+                    <h3>Inheritance</h3>
+                    <p>Create derived classes from existing classes to reuse and extend behavior.</p>
+                </article>
+
+                <article class="pillar">
+                    <span>04</span>
+                    <h3>Polymorphism</h3>
+                    <p>Use one interface with different implementations or forms.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- PRACTICE -->
+        <section id="practice" class="topic">
+            <p class="section-label">CHAPTER 20</p>
+            <h2>Practice Quiz</h2>
+            <p>Test your understanding of OOP concepts.</p>
+
+            <div class="quiz-question">
+                <h3>1. What is a class?</h3>
+                <p>A. A loop</p>
+                <p>B. A blueprint for objects</p>
+                <p>C. An operator</p>
+                <details>
+                    <summary>Show answer</summary>
+                    <p>B. A blueprint for objects.</p>
+                </details>
+            </div>
+
+            <div class="quiz-question">
+                <h3>2. Which keyword enables runtime polymorphism?</h3>
+                <p>A. virtual</p>
+                <p>B. static</p>
+                <p>C. private</p>
+                <details>
+                    <summary>Show answer</summary>
+                    <p>A. virtual, when used for appropriate virtual function calls.</p>
+                </details>
+            </div>
+
+            <div class="quiz-question">
+                <h3>3. Which access specifier hides members from direct outside access?</h3>
+                <p>A. public</p>
+                <p>B. private</p>
+                <p>C. virtual</p>
+                <details>
+                    <summary>Show answer</summary>
+                    <p>B. private.</p>
+                </details>
+            </div>
+
+            <div class="quiz-question">
+                <h3>4. What is the purpose of a constructor?</h3>
+                <p>A. Initialize an object</p>
+                <p>B. Destroy every object</p>
+                <p>C. Create a namespace</p>
+                <details>
+                    <summary>Show answer</summary>
+                    <p>A. Initialize an object when it is created.</p>
+                </details>
+            </div>
+
+            <div class="quiz-question">
+                <h3>5. What is function overriding?</h3>
+                <p>A. Defining a new namespace</p>
+                <p>B. Replacing a virtual base function implementation in a derived class</p>
+                <p>C. Declaring a private variable</p>
+                <details>
+                    <summary>Show answer</summary>
+                    <p>B. A derived class provides an overriding implementation.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="final-note">
+            <h2>Keep Practicing!</h2>
+            <p>
+                Start with classes and objects. Then learn encapsulation,
+                abstraction, inheritance and polymorphism. Build small programs
+                such as a bank account, student record system or payment system
+                to apply what you learn.
+            </p>
+            <a class="primary-btn" href="#top">Back to Top ↑</a>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>OOPs in C++ — Learn, Code, Practice.</p>
+        <p>Built with HTML and external CSS.</p>
+    </footer>
+
+</body>
+
+</html>
