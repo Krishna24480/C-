@@ -92,10 +92,48 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+void InOrderTraversal(Node *root, vector<int> &inorderVal)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    InOrderTraversal(root->left, inorderVal);
+    inorderVal.push_back(root->data);
+    InOrderTraversal(root->right, inorderVal);
+}
+
+Node *InorderToBST(int s, int e, vector<int> &inorderVal)
+{
+    if (s > e)
+    {
+        return NULL;
+    }
+
+    int mid = (s + e) / 2;
+
+    Node *root = new Node(inorderVal[mid]);
+
+    root->left = InorderToBST(s, mid - 1, inorderVal);
+
+    root->right = InorderToBST(mid + 1, e, inorderVal);
+
+    return root;
+}
+
+Node *balanceBST(Node *root)
+{
+    vector<int> inorderVal;
+
+    InOrderTraversal(root, inorderVal);
+
+    return InorderToBST(0, inorderVal.size() - 1, inorderVal);
+}
+
 int main()
 {
     Node *root = NULL;
-
     // Example Input:
     // 10 8 21 7 27 5 4 3 -1
     // 50 20 70 10 30 90 110 -1
@@ -108,6 +146,11 @@ int main()
     levelOrderTraversal(root);
 
     cout << endl;
+
+    Node *BalanceRoot = balanceBST(root);
+
+    cout << "Print Balance Binary Search Tree: " << endl;
+    levelOrderTraversal(BalanceRoot);
 
     return 0;
 }
