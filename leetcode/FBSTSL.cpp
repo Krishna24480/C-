@@ -93,6 +93,49 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+void InOrderTraversal(Node *root, vector<int> &inorderVal)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    InOrderTraversal(root->left, inorderVal);
+    inorderVal.push_back(root->data);
+    InOrderTraversal(root->right, inorderVal);
+}
+
+Node* Flatter(Node* root)
+{
+    vector<int> inorderVal;
+
+    InOrderTraversal(root, inorderVal);
+
+    if (inorderVal.empty())
+    {
+        return NULL;
+    }
+
+    int n = inorderVal.size();
+
+    Node *newRoot = new Node(inorderVal[0]);
+
+    Node *curr = newRoot;
+
+    for (int i = 1; i < n; i++)
+    {
+        Node *temp = new Node(inorderVal[i]);
+        curr->left = NULL;
+        curr->right = temp;
+        curr = temp;
+    }
+
+    curr->left = NULL;
+    curr->right = NULL;
+
+    return newRoot;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -101,14 +144,18 @@ int main()
     // 10 8 21 7 27 5 4 3 -1
     // 50 20 70 10 30 90 110 -1
 
-    cout << "Enter Data to Create BST: " << endl;
+    cout << "Enter Data to Create BST:" << endl;
 
     takeInput(root);
 
-    cout << "Print Binary Search Tree: " << endl;
+    cout << "Print Binary Search Tree:" << endl;
     levelOrderTraversal(root);
 
-    cout << endl;
+    cout << "\nFlattened BST:" << endl;
+
+    Node *flatRoot = Flatter(root);
+
+    levelOrderTraversal(flatRoot);
 
     return 0;
 }

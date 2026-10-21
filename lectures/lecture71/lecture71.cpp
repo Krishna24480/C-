@@ -12,8 +12,8 @@ int main()
     cout << "Flatter BST to a Sorted List \n";
     cout << "Answer in Leetcode(FBSTSL) folder\n";
 
-    cout << " \n";
-    cout << "Answer in Leetcode() folder\n";
+    cout << "Normal BST to Balanced BST \n";
+    cout << "Answer in Leetcode(NBSTBBST) folder\n";
 
     return 0;
 }
