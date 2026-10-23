@@ -93,84 +93,10 @@ void levelOrderTraversal(Node *root)
     }
 }
 
-vector<int> mergeArrays(vector<int> a, vector<int> b)
-{
-    vector<int> ans(a.size() + b.size());
-
-    int i = 0, j = 0;
-    int k = 0;
-
-    while (i < a.size() && j < b.size())
-    {
-        if (a[i] < b[j])
-        {
-            ans[k++] = a[i];
-            i++;
-        }
-        else
-        {
-            ans[k++] = b[j];
-            j++;
-        }
-    }
-
-    while (i < a.size())
-    {
-        ans[k++] = a[i];
-        i++;
-    }
-
-    while (j < b.size())
-    {
-        ans[k++] = b[j];
-        j++;
-    }
-    return ans;
-}
-
-void InOrder(Node *root, vector<int> &in)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-
-    InOrder(root->left, in);
-    in.push_back(root->data);
-    InOrder(root->right, in);
-}
-
-Node *InorderToBST(int s, int e, vector<int> &inorderVal)
-{
-    if (s > e)
-    {
-        return NULL;
-    }
-
-    int mid = (s + e) / 2;
-
-    Node *root = new Node(inorderVal[mid]);
-
-    root->left = InorderToBST(s, mid - 1, inorderVal);
-
-    root->right = InorderToBST(mid + 1, e, inorderVal);
-
-    return root;
-}
 
 Node *mergeBST(Node *root1, Node *root2)
 {
-    vector<int> bst1;
-    vector<int> bst2;
 
-    InOrder(root1, bst1);
-    InOrder(root2, bst2);
-
-    vector<int> mergerdArray = mergeArrays(bst1, bst2);
-
-    int s = 0, e = mergerdArray.size() - 1;
-
-    return InorderToBST(s, e, mergerdArray);
 }
 
 int main()
@@ -201,7 +127,7 @@ int main()
 
     cout << endl;
 
-    Node *root3 = mergeBST(root1,root2);
+    Node *root3 = mergeBST(root1, root2);
 
     cout << "Merge Root1 And Root2 BST And Create Root3: " << endl;
 
