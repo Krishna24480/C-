@@ -1,4 +1,5 @@
 #include <iostream>
+#include<queue>
 using namespace std;
 
 class heap
@@ -204,6 +205,60 @@ int main()
     cout << "Printing the Array2 After Sort:" << endl;
     HeapSortMiH(arr2, n);
     Print(arr2, n);
+
+    cout << endl;
+
+    cout << "Using Priority Queue Here:" << endl;
+    cout << endl;
+
+    cout << "Creating MaxHeap: " << endl;
+
+    // Max Heap Defaul;
+    priority_queue<int> pq;
+
+    pq.push(4);
+    pq.push(2);
+    pq.push(5);
+    pq.push(3);
+
+    cout << "Element At Top: " << pq.top() << endl;
+    pq.pop();
+    cout << "Element At Top: " << pq.top() << endl;
+    cout << "Size is: " << pq.size() << endl;
+
+    if (pq.empty()) 
+    {
+        cout << "PQ is Empty" << endl;
+    }
+    else
+    {
+        cout << "PQ is not Empty" << endl;
+    }
+
+    cout << endl;
+
+    cout << "Creating MinHeap: " << endl;
+    // Min Heap Craetion
+    priority_queue<int, vector<int>, greater<int>>
+        MinHeap;
+
+    MinHeap.push(4);
+    MinHeap.push(2);
+    MinHeap.push(5);
+    MinHeap.push(3);
+
+    cout << "Element At Top: " << MinHeap.top() << endl;
+    MinHeap.pop();
+    cout << "Element At Top: " << MinHeap.top() << endl;
+    cout << "Size is: " << MinHeap.size() << endl;
+    if (MinHeap.empty())
+    {
+        cout << "MinHeap is Empty" << endl;
+    }
+    else
+    {
+        cout << "MinHeap is not Empty" << endl;
+    }
 
     return 0;
 }
