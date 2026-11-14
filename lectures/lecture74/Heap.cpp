@@ -15,7 +15,7 @@ public:
 
     void insert(int val)
     {
-        size = size + 1;
+        size++;
 
         int index = size;
         arr[index] = val;
@@ -48,20 +48,28 @@ public:
         size--;
 
         int i = 1;
-        while (i < size)
+
+        while (i <= size)
         {
             int leftIndex = 2 * i;
             int rightIndex = 2 * i + 1;
 
-            if (leftIndex < size && arr[i] < arr[leftIndex])
+            int largest = i;
+
+            if (leftIndex <= size && arr[largest] < arr[leftIndex])
             {
-                swap(arr[i], arr[leftIndex]);
-                i = leftIndex;
+                largest = leftIndex;
             }
-            else if (rightIndex < size && arr[i] < arr[rightIndex])
+
+            if (rightIndex <= size && arr[largest] < arr[rightIndex])
             {
-                swap(arr[i], arr[rightIndex]);
-                i = rightIndex;
+                largest = rightIndex;
+            }
+
+            if (largest != i)
+            {
+                swap(arr[i], arr[largest]);
+                i = largest;
             }
             else
             {
@@ -90,6 +98,7 @@ void HeapilyFyFMH(int arr[], int n, int i)
     {
         largest = left;
     }
+
     if (right < n && arr[largest] < arr[right])
     {
         largest = right;
@@ -104,75 +113,65 @@ void HeapilyFyFMH(int arr[], int n, int i)
 
 void HeapilyFyFMiH(int arr[], int n, int i)
 {
-    int Samllest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+    int smallest = i;
+    int left = 2 * i;
+    int right = 2 * i + 1;
 
-    if (left < n && arr[Samllest] > arr[left])
+    if (left < n && arr[smallest] > arr[left])
     {
-        Samllest = left;
-    }
-    if (right < n && arr[Samllest] > arr[right])
-    {
-        Samllest = right;
+        smallest = left;
     }
 
-    if (Samllest != i)
+    if (right < n && arr[smallest] > arr[right])
     {
-        swap(arr[Samllest], arr[i]);
-        HeapilyFyFMiH(arr, n, Samllest);
+        smallest = right;
+    }
+
+    if (smallest != i)
+    {
+        swap(arr[smallest], arr[i]);
+        HeapilyFyFMiH(arr, n, smallest);
     }
 }
 
-void Print(int arr[],int n){
+void Print(int arr[], int n)
+{
     for (int i = 1; i <= n; i++)
     {
         cout << arr[i] << " ";
     }
     cout << endl;
-} 
+}
 
 int main()
 {
-
-    // heap h;
-
-    // h.insert(50);
-    // h.insert(55);
-    // h.insert(53);
-    // h.insert(52);
-    // h.insert(54);
-
-    // h.print();
-
-    // h.DeleteFH();
-    // h.print();
-
     int arr[6] = {-1, 54, 53, 55, 52, 50};
+    int arr2[6] = {-1, 54, 53, 55, 52, 50};
 
     int n = 5;
 
-    cout << "Printing the Array Before Convert into Max Heap: " << endl;
+    cout << "Printing the Array Before Convert into Max Heap:" << endl;
     Print(arr, n);
 
-    for (int i = n / 2; i > 0; i--)
+    for (int i = n / 2; i >= 1; i--)
     {
-        HeapilyFyFMH(arr, n, i);
+        HeapilyFyFMH(arr, n + 1, i);
     }
 
-    cout << "Printing the Array After Convert into Max Heap: " << endl;
+    cout << "Printing the Array After Convert into Max Heap:" << endl;
     Print(arr, n);
 
-    cout << "Printing the Array Before Convert into Min Heap: " << endl;
-    Print(arr, n);
+    cout << "Printing the Array Before Convert into Min Heap:" << endl;
+    Print(arr2, n);
 
-    for (int i = n / 2 -1; i >= 0; i--)
+    for (int i = n / 2; i >= 1; i--)
     {
-        HeapilyFyFMiH(arr, n, i);
+        HeapilyFyFMiH(arr2, n + 1, i);
     }
 
-    cout << "Printing the Array After Convert into Min Heap: " << endl;
-    Print(arr, n);
+    cout << "Printing the Array After Convert into Min Heap:" << endl;
+    Print(arr2, n);
 
     return 0;
+
 }
