@@ -88,18 +88,18 @@ public:
     }
 };
 
-void HeapilyFyFMH(int arr[], int n, int i)
+void HeapilyFyFMaH(int arr[], int n, int i)
 {
     int largest = i;
     int left = 2 * i;
     int right = 2 * i + 1;
 
-    if (left < n && arr[largest] < arr[left])
+    if (left <= n && arr[largest] < arr[left])
     {
         largest = left;
     }
 
-    if (right < n && arr[largest] < arr[right])
+    if (right <= n && arr[largest] < arr[right])
     {
         largest = right;
     }
@@ -107,7 +107,7 @@ void HeapilyFyFMH(int arr[], int n, int i)
     if (largest != i)
     {
         swap(arr[largest], arr[i]);
-        HeapilyFyFMH(arr, n, largest);
+        HeapilyFyFMaH(arr, n, largest);
     }
 }
 
@@ -143,6 +143,31 @@ void Print(int arr[], int n)
     cout << endl;
 }
 
+void HeapSortMaH(int arr[], int n)
+{
+
+    int size = n;
+    while (size > 1)
+    {
+        swap(arr[size], arr[1]);
+        size--;
+        HeapilyFyFMaH(arr, size, 1);
+    }
+};
+
+void HeapSortMiH(int arr[], int n)
+{
+    int i = 1;
+    while (n > 1)
+    {
+        swap(arr[n], arr[i]);
+        n--;
+        i++;
+        HeapilyFyFMaH(arr, n, i);    
+    }
+    
+};
+
 int main()
 {
     int arr[6] = {-1, 54, 53, 55, 52, 50};
@@ -155,7 +180,7 @@ int main()
 
     for (int i = n / 2; i >= 1; i--)
     {
-        HeapilyFyFMH(arr, n + 1, i);
+        HeapilyFyFMaH(arr, n + 1, i);
     }
 
     cout << "Printing the Array After Convert into Max Heap:" << endl;
@@ -172,6 +197,13 @@ int main()
     cout << "Printing the Array After Convert into Min Heap:" << endl;
     Print(arr2, n);
 
-    return 0;
+    cout << "Printing the Array After Sort:" << endl;
+    HeapSortMaH(arr, n);
+    Print(arr, n);
 
+    cout << "Printing the Array2 After Sort:" << endl;
+    HeapSortMiH(arr2, n);
+    Print(arr2, n);
+
+    return 0;
 }
