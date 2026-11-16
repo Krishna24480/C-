@@ -15,8 +15,11 @@ int main()
     cout << " Merge 2 Binary Max-Heap \n";
     cout << "Answer in Leetcode(M2BMH) folder\n";
 
-    cout << "  \n";
-    cout << "Answer in Leetcode() folder\n";
+    cout << "Minimum Cost of Ropes\n";
+    cout << "Answer in Leetcode(MCoR) folder\n";
+
+    cout << "Convert Binary Search tree in Min Heap \n";
+    cout << "Answer in Leetcode(ConvertBSTIMiH) folder\n";
 
     return 0;
 }
